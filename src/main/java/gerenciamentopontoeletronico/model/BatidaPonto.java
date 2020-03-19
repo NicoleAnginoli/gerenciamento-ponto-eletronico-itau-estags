@@ -2,12 +2,23 @@ package gerenciamentopontoeletronico.model;
 
 import java.util.Calendar;
 
-public class batidaPonto {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class BatidaPonto {
 	private enum tipoBatida {
 		ENTRADA, SAIDA;
 	}
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="idFunc")
 	private Funcionario funcionario;
 	private Calendar dataHora;
 	private tipoBatida tipo;
