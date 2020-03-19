@@ -18,8 +18,6 @@ public class BatidaPonto {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="idFunc")
-	private Funcionario funcionario;
 	private Calendar dataHora;
 	private tipoBatida tipo;
 	
@@ -31,13 +29,6 @@ public class BatidaPonto {
 		this.id = id;
 	}
 	
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
 	
 	public Calendar getDataHora() {
 		return dataHora;

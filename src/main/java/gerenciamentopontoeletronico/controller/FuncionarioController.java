@@ -28,4 +28,5 @@ public class FuncionarioController {
 	public @ResponseBody Optional<Funcionario> getEmployeeById(@PathVariable(value="id") int id){
 		return funcionarioRepository.findById(id);
 	}
+	
 }

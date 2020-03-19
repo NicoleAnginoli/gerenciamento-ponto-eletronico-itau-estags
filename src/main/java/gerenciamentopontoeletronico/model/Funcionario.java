@@ -1,7 +1,6 @@
 package gerenciamentopontoeletronico.model;
 
-import java.util.Calendar;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +15,9 @@ public class Funcionario {
 	private String nome;
 	private int cpf;
 	private String email;
-	private Calendar dataCadastro;
+	
+	@Column
+	private java.sql.Timestamp dataCadastro;
 	
 	public int getId() {
 		return id;
@@ -49,12 +50,12 @@ public class Funcionario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public Calendar getDataCadastro() {
+
+	public java.sql.Timestamp getDataCadastro() {
 		return dataCadastro;
 	}
-	
-	public void setDataCadastro(Calendar dataCadastro) {
+
+	public void setDataCadastro(java.sql.Timestamp dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
 	
