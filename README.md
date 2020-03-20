@@ -67,7 +67,7 @@ Cadastra um novo funcionário (id e data de cadastro são gerados automaticament
 ```
 <br/>
 
-### PUT /api/funcionarios/update/11
+### PUT /api/funcionarios/update/{id}
 Atualiza o cadastro de um funcionário a partir de seu id (os campos id e data de cadastro não são editáveis)
 
  ```json
@@ -95,6 +95,39 @@ Lista todas as batidas de ponto do sistema
         "datahora": "2020-03-19T15:37:02",
         "tipobatida": "entrada"
     }
+```
+<br/>
+
+### GET /api/ponto/{id}
+Lista todas as batidas de ponto de um usuário a partir de seu id 
+
+```json
+[
+    {
+        "id": 4,
+        "idfunc": 4,
+        "datahora": "2020-03-19T15:36:44",
+        "tipobatida": "entrada"
+    },
+    {
+        "id": 8,
+        "idfunc": 4,
+        "datahora": "2020-03-19T15:37:02",
+        "tipobatida": "saída"
+    },
+    {
+        "id": 11,
+        "idfunc": 4,
+        "datahora": "2020-03-19T15:38:10",
+        "tipobatida": "entrada"
+    },
+    {
+        "id": 12,
+        "idfunc": 4,
+        "datahora": "2020-03-19T16:29:04",
+        "tipobatida": "saída"
+    }
+]
 ```
 <br/>
 
