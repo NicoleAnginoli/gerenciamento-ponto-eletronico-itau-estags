@@ -1,15 +1,11 @@
 package gerenciamentopontoeletronico.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,10 +22,8 @@ public class Funcionario {
 	private int cpf;
 	private String email;
 
-	@Basic(optional = false)
-	@Column(name = "datacadastro", insertable = false, updatable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date datacadastro;
+	@CreationTimestamp
+	private LocalDateTime datacadastro;
 	
 	public int getId() {
 		return id;
@@ -63,11 +57,11 @@ public class Funcionario {
 		this.email = email;
 	}
 
-	public Date getdatacadastro() {
+	public LocalDateTime getdatacadastro() {
 		return datacadastro;
 	}
 
-	public void setdatacadastro(Date datacadastro) {
+	public void setdatacadastro(LocalDateTime datacadastro) {
 		this.datacadastro = datacadastro;
 	}
 	
