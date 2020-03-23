@@ -28,7 +28,7 @@ export class FuncionarioService {
     return this.httpClient.get<Funcionario>(this.url + '/' + id);
   }
 
-  insertFuncionario(func: Funcionario): Observable<Funcionario> {
+  postFuncionario(func: Funcionario): Observable<Funcionario> {
     return this.httpClient.post<Funcionario>(this.urlInserir, JSON.stringify(func), this.httpOptions)
   }
 
