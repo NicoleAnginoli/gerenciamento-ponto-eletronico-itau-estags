@@ -10,24 +10,26 @@ import { NgForm } from '@angular/forms';
 })
 export class TablePontoComponent implements OnInit {
 
- ponto = {} as Batidaponto;
- pontos: Batidaponto[];
+  ponto = {} as Batidaponto;
+  pontos: Batidaponto[];
 
- constructor(private batidaPontoService: BatidapontoService) {}
+  constructor(private batidaPontoService: BatidapontoService) { }
 
- ngOnInit() {
-   this.getRegistries();
- }
+  ngOnInit() {
+    this.getRegistries();
+    // this.getRegistryById(24);
+  }
 
- getRegistries() {
-  this.batidaPontoService.getAllRegistries().subscribe((pontos: Batidaponto[]) => {
-    this.pontos = pontos;
-  });
-}
 
-cleanForm(form: NgForm) {
-  form.resetForm();
-  // funcionario = {} as Funcionario;
-}
+  cleanForm(form: NgForm) {
+    form.resetForm();
+    this.ponto = {} as Batidaponto;
+  }
+
+  getRegistries() {
+    this.batidaPontoService.getAllRegistries().subscribe((pontos: Batidaponto[]) => {
+      this.pontos = pontos;
+    });
+  }
 
 }
