@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="card add-ponto">
+        <h5 class="card-header"> Bater ponto</h5>
+        <div class="card-body">
+            <form id="add-form" (ngSubmit)="f.form.valid && insertRegistry(f)" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="idfunc">ID Funcionário</label>
+                    <input type="text" [(ngModel)]="ponto.idfunc" id="idfunc" name="idfunc" #idfunc="ngModel" required
+                        class="form-control" [ngClass]="{ 'is-invalid': f.submitted && idfunc.invalid }"
+                        placeholder="Digite seu ID">
+                    <div *ngIf="f.submitted && idfunc.invalid" class="invalid-feedback">
+                        <div *ngIf="idfunc.errors.required">ID é obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="batida"></label>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" [(ngModel)]="ponto.tipobatida" id="entrada" #batida="ngModel"
+                            class="custom-control-input" value="entrada" name="tipobatida" required>
+                        <label class="custom-control-label" for="entrada">Entrada</label>
+                    </div>
+                    <label for="batida"></label>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" [(ngModel)]="ponto.tipobatida" id="saida" #batida="ngModel"
+                            class="custom-control-input" value="saida" name="tipobatida" required>
+                        <label class="custom-control-label" for="saida">Saída</label>
+                    </div>
+                    <div *ngIf="f.submitted && idfunc.invalid" class="invalid-feedback">
+                        <div *ngIf="batida.errors.required">ID é obrigatório</div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-add-ponto">Salvar</button>
+                <button type="reset" class="btn btn-secondary btn-add-ponto" (click)="cleanForm(f)">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>
