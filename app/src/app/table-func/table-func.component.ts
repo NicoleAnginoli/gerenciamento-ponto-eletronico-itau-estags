@@ -15,12 +15,10 @@ export class TableFuncComponent implements OnInit {
   funcionarios: Funcionario[];
 
   constructor(private funcionarioService: FuncionarioService) {}
-  
-  id = 1;
 
   ngOnInit() {
     this.getFuncionarios();
-    // this.getFuncionarioById(this.id);
+    // this.getFuncionarioById(1);
   }
 
   getFuncionarios() {
@@ -29,26 +27,5 @@ export class TableFuncComponent implements OnInit {
       this.funcionarios = funcionarios;
     });
   }
-
-  insertFuncionario(form: NgForm) {
-    console.log(form)
-    this.funcionarioService.postFuncionario(this.funcionario).subscribe(() => {
-        this.cleanForm(form);
-    });
-  }
-
-  cleanForm(form: NgForm) {
-    form.resetForm();
-    // funcionario = {} as Funcionario;
-  }
-
-  //como mostrar esse objeto na tabela
-  getFuncionarioById(id: number){
-    this.funcionarioService.getFuncionarioById(id).subscribe((funcionario: Funcionario) => {
-      console.log(funcionario)
-      this.funcionario = funcionario;
-    });
-  }
-
 
 }

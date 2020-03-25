@@ -24,39 +24,4 @@
       </table>
     </div>
   </div>
-  <div class="card add-func">
-    <h5 class="card-header">Adicionar Funcionário</h5>
-    <div class="card-body">
-      <form id="add-form" (ngSubmit)="f.form.valid && insertFuncionario(f)" #f="ngForm" novalidate>
-        <div class="form-group">
-          <label for="nome">Nome</label>
-          <input type="text" [(ngModel)]="funcionario.nome" id="nome" name="nome" #nome="ngModel" required
-            class="form-control" [ngClass]="{ 'is-invalid': f.submitted && nome.invalid }" placeholder="Digite o nome">
-          <div *ngIf="f.submitted && nome.invalid" class="invalid-feedback">
-            <div *ngIf="nome.errors.required">Nome é obrigatório</div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="cpf">CPF</label>
-          <input type="number" [(ngModel)]="funcionario.cpf" id="cpf" name="cpf" minlength="11" maxlength="11" #cpf="ngModel" required
-            class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cpf.invalid }" placeholder="Digite o CPF (somente números)">
-          <div *ngIf="f.submitted && cpf.invalid" class="invalid-feedback">
-            <div *ngIf="cpf.errors.required">CPF é obrigatório</div>
-            <div *ngIf="cpf.errors.minlength"> o campo CPF deve ter 11 digitos </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="text" [(ngModel)]="funcionario.email" id="email" name="email" #email="ngModel" required
-            class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
-            placeholder="Digite o e-mail">
-          <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-            <div *ngIf="email.errors.required">E-mail é obrigatório</div>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-add-func">Salvar</button>
-          <button type="reset" class="btn btn-secondary btn-add-func" (click)="cleanForm(f)">Cancelar</button>
-      </form>
-    </div>
-  </div>
 </div>
