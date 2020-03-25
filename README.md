@@ -1,5 +1,14 @@
 # Gerenciamento Ponto Eletrônico
 
+## Como rodar o projeto
+
+- Api: na pasta do projeto rode o comando mvn spring-boot:run
+
+- App: na pasta /app do projeto rode o comando npm install e depois ng serve -o
+
+
+## Endpoints API 
+
 ### GET /api/funcionarios
 Lista todos os funcionários cadastrados no sistema
 ```json

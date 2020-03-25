@@ -28,10 +28,15 @@
                     <div *ngIf="f.submitted && idfunc.invalid" class="invalid-feedback">
                         <div *ngIf="batida.errors.required">ID é obrigatório</div>
                     </div>
+                    <div *ngIf="f.submitted && batida.invalid" style="font-size: 80%; color: red">
+                        <div *ngIf="batida.errors.required">Selecione uma opção</div>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-add-ponto">Salvar</button>
                 <button type="reset" class="btn btn-secondary btn-add-ponto" (click)="cleanForm(f)">Cancelar</button>
             </form>
+            <div *ngIf="showMessage && f.touched && f.submitted && idfunc.valid && batida.valid" class="sucess"> Registrado com sucesso! </div>
+            <div *ngIf="errorMessage && f.touched && f.submitted && idfunc.valid && batida.valid" class="error"> Não existe funcionário cadastrado com esse ID </div>
         </div>
     </div>
 </div>

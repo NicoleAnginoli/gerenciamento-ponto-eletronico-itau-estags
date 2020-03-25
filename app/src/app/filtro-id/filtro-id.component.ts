@@ -33,49 +33,31 @@ export class FiltroIdComponent implements OnInit {
 
   
   cleanForm(form: NgForm) {
-    console.log(this.funcionario);
-    console.log(this.funcionarioToBeUpdated);
     form.resetForm();
-    console.log(this.funcionario);
-    console.log(this.funcionarioToBeUpdated);
-    // funcionario = {} as Funcionario;
   }
 
   getFuncionarioById(id: number){
     this.funcionarioService.getFuncionarioById(id).subscribe((funcionario: Funcionario) => {
       this.funcionario = funcionario;
       this.funcionarioToBeUpdated = funcionario;
+      
       this.editFunc = false;
       this.viewFunc = true;
-      // console.log(funcionario)
-      // let arr: Funcionario[];
-      // arr[0] = funcionario;
-      // console.log(typeof arr)
-      // console.log(typeof this.funcionarios)
-      // console.log(typeof this.funcionario)
-      // console.log(this.selectedView)
     });
   }
 
   getRegistryById(id: number) {
     this.batidaPontoService.getResgistriesById(id).subscribe((pontos: Batidaponto[]) => {
-      // console.log(pontos)
       this.pontos = pontos;
     });
   }
 
   edit(){
-    // this.funcionario = this.funcionarios[0];
-    // console.log(this.funcionario);
     this.editFunc=true;
-    // this.funcionarioToBeUpdated = this.funcionario;
-    // console.log(this.funcionarioToBeUpdated)
   } 
 
   updateFunc(form: NgForm){
     this.funcionarioService.putFuncionario(this.funcionarioToBeUpdated).subscribe(() => {
-      // console.log(form)
-      // this.cleanForm(form);
       this.showMessage=true;
     },
     error => console.log(error)
