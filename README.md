@@ -2,9 +2,9 @@
 
 ## Como rodar o projeto
 
-- Api: na pasta do projeto rode o comando mvn spring-boot:run
+- Api: na pasta do projeto rode o comando *mvn spring-boot:run*
 
-- App: na pasta /app do projeto rode o comando npm install e depois ng serve -o
+- App: na pasta /app do projeto rode o comando *npm install* e depois *npm start*
 
 
 ## Endpoints API 
