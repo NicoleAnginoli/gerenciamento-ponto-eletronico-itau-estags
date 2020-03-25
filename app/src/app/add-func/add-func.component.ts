@@ -25,8 +25,8 @@ export class AddFuncComponent implements OnInit {
     this.funcionarioService.postFuncionario(this.funcionario).subscribe(() => {
       console.log(this.showMessage)
       // this.cleanForm(form);
+      this.showMessage=true;
     });
-    this.showMessage=true;
   }
 
   cleanForm(form: NgForm) {
