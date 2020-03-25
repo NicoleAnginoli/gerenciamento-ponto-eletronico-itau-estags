@@ -1,0 +1,28 @@
+.container {
+    margin-top: 30px;
+}
+
+.add-func {
+    margin-bottom: 30px;
+}
+
+.list-func, .list-ponto{
+    margin-bottom: 50px;
+}
+
+.btn-add-func {
+    margin-right: 10px;
+}
+
+.invalid {
+    border-color: red;
+}
+
+.sucess {
+    background-color: #b1e8b1;
+    width: 30%;
+    padding: 4px;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 10px;
+}

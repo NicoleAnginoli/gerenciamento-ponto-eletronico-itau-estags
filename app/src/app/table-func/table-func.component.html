@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card list-func">
+    <h5 class="card-header">Lista de funcionários</h5>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Data de Cadastro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let func of funcionarios">
+            <td>{{func.id}}</td>
+            <td>{{func.nome}}</td>
+            <td>{{func.cpf}}</td>
+            <td>{{func.email}}</td>
+            <td>{{func.datacadastro | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
