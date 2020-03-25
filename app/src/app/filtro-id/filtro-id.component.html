@@ -1,0 +1,134 @@
+<div class="container">
+    <div class="card add-func">
+        <h5 class="card-header">Buscar Funcionario</h5>
+        <div class="card-body">
+            <form id="add-form" (ngSubmit)="f.form.valid && getFuncionarioById(selectedId)" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" [(ngModel)]="selectedId" id="id" name="id" #id="ngModel" required
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': f.submitted && id.invalid || (f.submitted && id.valid && funcionario==null && selectedView)}"
+                        placeholder="Insira o ID do funcionário">
+                    <div *ngIf="f.submitted && id.invalid" class="invalid-feedback" style="font-size: 100%">
+                        <div *ngIf="id.errors.required">ID é obrigatório</div>
+                    </div>
+                    <div *ngIf="funcionario==null && f.submitted && id.valid && selectedView" style="font-size: 100%"
+                        class="invalid-feedback">Não existe funcionário cadastrado com este ID</div>
+                </div>
+                <div style="margin-bottom: 15px">
+                    <label for="selectedView"></label>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" [(ngModel)]="selectedView" id="info" #info="ngModel"
+                            class="custom-control-input" value=1 name="tipoView">
+                        <label class="custom-control-label" for="info">Informações</label>
+                    </div>
+                    <label for="selectedView"></label>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" [(ngModel)]="selectedView" id="ponto" #ponto="ngModel"
+                            class="custom-control-input" value=2 name="tipoView" required>
+                        <label class="custom-control-label" for="ponto">Batida de Ponto</label>
+                    </div>
+                    <div *ngIf="f.submitted && ponto.invalid" style="font-size: 100%; color: red">
+                        <div *ngIf="ponto.errors.required">Selecione uma opção</div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-add-func" (click)="getRegistryById(selectedId)"> Buscar</button>
+                <button type="reset" class="btn btn-secondary btn-add-func" (click)="cleanForm(f)">Limpar</button>
+            </form>
+        </div>
+    </div>
+    <div *ngIf="selectedId && funcionario && selectedView==1  && viewFunc==true" class="card list-func">
+        <h5 class="card-header">Funcionário</h5>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">E-Mail</th>
+                        <th scope="col">Data de Cadastro</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{funcionario.id}}</td>
+                        <td>{{funcionario.nome}}</td>
+                        <td>{{funcionario.cpf}}</td>
+                        <td>{{funcionario.email}}</td>
+                        <td>{{funcionario.datacadastro | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" (click)=edit()>Editar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="selectedId && funcionario && selectedView==2" class="card list-ponto">
+        <h5 class="card-header">Lista de registro de pontos</h5>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Id Func</th>
+                <th scope="col">Tipo da Batida</th>
+                <th scope="col">Horário</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of pontos">
+                <td>{{p.id}}</td>
+                <td>{{p.idfunc}}</td>
+                <td>{{p.tipobatida}}</td>
+                <td>{{p.datahora | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+        <div class="card add-func" *ngIf="editFunc && selectedView==1">
+          <h5 class="card-header">Editar Funcionário
+
+              <button type="button" class="close" aria-label="Close" (click)="editFunc=false">
+                <span aria-hidden="true">×</span>
+              </button>
+          </h5>
+          <div class="card-body">
+            <form id="add-form" (ngSubmit)="k.form.valid && updateFunc(k)" #k="ngForm" novalidate>
+              <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" [(ngModel)]="funcionarioToBeUpdated.nome" id="nome" name="nome" #nome="ngModel" required
+                  class="form-control" [ngClass]="{ 'is-invalid': k.submitted && nome.invalid }" placeholder="Digite o nome">
+                <div *ngIf="k.submitted && nome.invalid" class="invalid-feedback">
+                  <div *ngIf="nome.errors.required">Nome é obrigatório</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cpf">CPF</label>
+                <input type="text" [(ngModel)]="funcionarioToBeUpdated.cpf" id="cpf" name="cpf" minlength="11" maxlength="11"
+                  #cpf="ngModel" required class="form-control" [ngClass]="{ 'is-invalid': k.submitted && cpf.invalid }"
+                  placeholder="Digite o CPF (somente números)">
+                <div *ngIf="k.submitted && cpf.invalid" class="invalid-feedback">
+                  <div *ngIf="cpf.errors.required">CPF é obrigatório</div>
+                  <div *ngIf="cpf.errors.minlength"> o campo CPF deve ter 11 digitos </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="text" [(ngModel)]="funcionarioToBeUpdated.email" id="email" name="email" #email="ngModel" required
+                  class="form-control" [ngClass]="{ 'is-invalid': k.submitted && email.invalid }"
+                  placeholder="Digite o e-mail">
+                <div *ngIf="k.submitted && email.invalid" class="invalid-feedback">
+                  <div *ngIf="email.errors.required">E-mail é obrigatório</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-add-func">Salvar</button>
+              <!-- <button type="reset" class="btn btn-secondary btn-add-func" (click)="cleanForm(k)">Cancelar</button> -->
+                <div *ngIf="showMessage && k.touched && k.submitted" class="sucess"> Editado com sucesso! </div>
+            </form>
+          </div>
+        </div>
+</div>
