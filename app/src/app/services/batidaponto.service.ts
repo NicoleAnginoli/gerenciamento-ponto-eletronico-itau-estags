@@ -23,11 +23,11 @@ export class BatidapontoService {
     return this.httpClient.get<Batidaponto[]>(this.url);
   }
 
-  getResgistriesById(idfunc: number): Observable<Batidaponto> {
-    return this.httpClient.get<Batidaponto>(this.url + '/' + idfunc);
+  getResgistriesById(idfunc: number): Observable<Batidaponto[]> {
+    return this.httpClient.get<Batidaponto[]>(this.url + '/' + idfunc);
   }
 
-  insertRegistry(ponto: Batidaponto): Observable<Batidaponto> {
+  postRegistry(ponto: Batidaponto): Observable<Batidaponto> {
     return this.httpClient.post<Batidaponto>(this.urlInserir, JSON.stringify(ponto), this.httpOptions)
   }
 }

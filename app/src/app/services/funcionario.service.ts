@@ -32,7 +32,7 @@ export class FuncionarioService {
     return this.httpClient.post<Funcionario>(this.urlInserir, JSON.stringify(func), this.httpOptions)
   }
 
-  updateFuncionario(func: Funcionario): Observable<Funcionario> {
+  putFuncionario(func: Funcionario): Observable<Funcionario> {
     return this.httpClient.put<Funcionario>(this.urlUpdate + '/' + func.id, JSON.stringify(func), this.httpOptions)
   }
 
