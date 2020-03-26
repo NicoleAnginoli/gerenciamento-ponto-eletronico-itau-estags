@@ -25,6 +25,19 @@ public class BatidaPonto {
 	
 	private String tipobatida;
 	
+	public BatidaPonto(int id, int idfunc, LocalDateTime datahora, String tipobatida) {
+		this.id = id;
+		this.idfunc = idfunc;
+		this.datahora = datahora;
+		this.tipobatida = tipobatida;
+	}
+	
+	public BatidaPonto(int idfunc, String tipobatida) {
+		this.idfunc = idfunc;
+		this.tipobatida = tipobatida;
+	}
+	
+	public BatidaPonto() { }
 
 	public int getId() {
 		return id;
