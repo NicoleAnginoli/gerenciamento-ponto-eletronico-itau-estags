@@ -32,18 +32,22 @@ export class RegistroPontoComponent implements OnInit {
     this.ponto = {} as Batidaponto;
   }
 
+  //Insere um novo registro de ponto
   insertRegistry(form: NgForm) {
+    //Verifica se existe um funcionário com aquele ID
     this.funcionarioService.getFuncionarioById(this.ponto.idfunc).subscribe((funcionario: Funcionario) => {
       if (funcionario == null) {
         this.errorMessage = true;
         this.showMessage = false;
       }
       else {
+        //Se o funcionario existir, insere a batida de ponto
         this.batidaPontoService.postRegistry(this.ponto).subscribe(() => {
           this.showMessage = true;
           this.errorMessage = false;
           this.sameRegistry = false;
           console.log("ok")
+          
           var millisecondsToWait = 1000;
           setTimeout(function () {
             form.resetForm();

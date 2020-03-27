@@ -86,8 +86,11 @@ public class FuncionarioControllerTest {
 	
 	@Test
 	void shouldUpdateEmployee() {
-		Funcionario func = new Funcionario(1, "nomeUpdated", "11111111111", "e@email.com", time);
+		Funcionario func = new Funcionario(4, "nomeUpdated", "11111111111", "e@email.com", time);
+		Optional<Funcionario> funcO= Optional.of(func);
+		Mockito.when(funcionarioRepository.findById(func.getId())).thenReturn(funcO);
 		Mockito.when(funcionarioRepository.save(func)).thenReturn(func);
-		Optional<Funcionario> result = funcionarioController.updateEmployee(1, func);
+		Optional<Funcionario> result = funcionarioController.updateEmployee(4, func);
+		assertTrue(result.isPresent());
 	}
 }

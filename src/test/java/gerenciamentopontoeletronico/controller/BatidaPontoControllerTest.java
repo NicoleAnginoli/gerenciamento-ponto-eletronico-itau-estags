@@ -47,24 +47,6 @@ public class BatidaPontoControllerTest {
 	
 	@BeforeEach
 	void setUp() {
-//		BatidaPonto p1 = new BatidaPonto();
-//		p1.setId(1);
-//		p1.setidfunc(1);
-//		p1.setdatahora(time);
-//		p1.settipobatida("entrada");
-//		
-//		BatidaPonto p2 = new BatidaPonto();
-//		p2.setId(2);
-//		p2.setidfunc(1);
-//		p2.setdatahora(time);
-//		p2.settipobatida("saída");
-//		
-//		BatidaPonto p3 = new BatidaPonto();
-//		p3.setId(3);
-//		p3.setidfunc(2);
-//		p3.setdatahora(time);
-//		p3.settipobatida("entrada");
-		
 		MockitoAnnotations.initMocks(this);
 		this.employeePontosList = new ArrayList<>();
 		this.employeePontosList.add(new BatidaPonto(1, 1, time, "entrada"));

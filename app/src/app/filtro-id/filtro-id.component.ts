@@ -35,11 +35,11 @@ export class FiltroIdComponent implements OnInit {
     this.viewFunc = false;
   }
 
-
   cleanForm(form: NgForm) {
     form.resetForm();
   }
 
+  //Retorna um funcionario, de acordo com a busca pelo seu ID
   getFuncionarioById(id: number) {
     this.funcionarioService.getFuncionarioById(id).subscribe((funcionario: Funcionario) => {
       this.funcionario = funcionario;
@@ -50,6 +50,7 @@ export class FiltroIdComponent implements OnInit {
     });
   }
 
+  //Retorna os registro de ponto de um funcionario a partir de seu ID
   getRegistryById(id: number) {
     this.batidaPontoService.getResgistriesById(id).subscribe((pontos: Batidaponto[]) => {
       this.pontos = pontos;
@@ -61,6 +62,7 @@ export class FiltroIdComponent implements OnInit {
     this.editFunc = true;
   }
 
+  //atualiza um funcionario
   updateFunc(form: NgForm) {
     this.funcionarioService.putFuncionario(this.funcionarioToBeUpdated).subscribe(() => {
       this.showMessage = true;
@@ -69,6 +71,7 @@ export class FiltroIdComponent implements OnInit {
     );
   }
 
+  //calcula as horas trabalhadas no dia de um funcionário
   workedHours(batidas: Batidaponto[]) {
     this.hours = 0;
     let today = new Date().getDate();
@@ -124,7 +127,7 @@ export class FiltroIdComponent implements OnInit {
   }
 
   formatTime(ms: number): String {
-    var seconds: number = ms / 1000;
+    var seconds: number = Math.floor(ms / 1000);
     var minutes: number = Math.floor(seconds / 60);
     seconds = seconds%60;
     var hours: number = Math.floor(minutes / 60);
@@ -133,7 +136,7 @@ export class FiltroIdComponent implements OnInit {
   }
 
   formatSeconds(s: number, m: number, h: number): String {
-    let seconds: String = s.toFixed();
+    let seconds: String = s.toString();
     let minutes: String = m.toString();
     let hours: String = h.toString();
     if (s<10){
@@ -147,6 +150,5 @@ export class FiltroIdComponent implements OnInit {
     }
     return hours + ':' + minutes + ':' + seconds;
   }
-
-
+  
 }

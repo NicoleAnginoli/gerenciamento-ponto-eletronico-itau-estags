@@ -20,6 +20,7 @@ export class AddFuncComponent implements OnInit {
     this.showMessage = false;
   }
 
+  //insere um novo funcionario
   insertFuncionario(form: NgForm) {
     console.log(form)
     this.funcionarioService.postFuncionario(this.funcionario).subscribe(() => {
