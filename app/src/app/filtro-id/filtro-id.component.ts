@@ -124,7 +124,7 @@ export class FiltroIdComponent implements OnInit {
   }
 
   formatTime(ms: number): String {
-    var seconds: number = ms / 1000;
+    var seconds: number = Math.floor(ms / 1000);
     var minutes: number = Math.floor(seconds / 60);
     seconds = seconds%60;
     var hours: number = Math.floor(minutes / 60);
@@ -133,7 +133,7 @@ export class FiltroIdComponent implements OnInit {
   }
 
   formatSeconds(s: number, m: number, h: number): String {
-    let seconds: String = s.toFixed();
+    let seconds: String = s.toString();
     let minutes: String = m.toString();
     let hours: String = h.toString();
     if (s<10){
