@@ -26,6 +26,7 @@ export class TablePontoComponent implements OnInit {
     this.ponto = {} as Batidaponto;
   }
 
+  //Retorna uma lista com todos os registro de ponto do sistema
   getRegistries() {
     this.batidaPontoService.getAllRegistries().subscribe((pontos: Batidaponto[]) => {
       this.pontos = pontos;

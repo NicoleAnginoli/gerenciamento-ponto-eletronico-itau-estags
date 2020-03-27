@@ -21,6 +21,7 @@ export class TableFuncComponent implements OnInit {
     // this.getFuncionarioById(1);
   }
 
+  //Retorna uma lista com os funcionários cadastrados
   getFuncionarios() {
     this.funcionarioService.getFuncionarios().subscribe((funcionarios: Funcionario[]) => {
       console.log(funcionarios)
