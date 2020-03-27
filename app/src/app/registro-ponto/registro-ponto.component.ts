@@ -16,13 +16,15 @@ export class RegistroPontoComponent implements OnInit {
   pontos: Batidaponto[];
   showMessage: boolean;
   errorMessage: boolean;
-  existsFunc= {} as Funcionario;
+  sameRegistry: boolean;
+  existsFunc = {} as Funcionario;
 
   constructor(private funcionarioService: FuncionarioService, private batidaPontoService: BatidapontoService) { }
 
   ngOnInit() {
     this.showMessage = false;
     this.errorMessage = false;
+    this.sameRegistry = false;
   }
 
   cleanForm(form: NgForm) {
@@ -32,18 +34,22 @@ export class RegistroPontoComponent implements OnInit {
 
   insertRegistry(form: NgForm) {
     this.funcionarioService.getFuncionarioById(this.ponto.idfunc).subscribe((funcionario: Funcionario) => {
-        this.existsFunc = funcionario;
+      if (funcionario == null) {
+        this.errorMessage = true;
+        this.showMessage = false;
+      }
+      else {
+        this.batidaPontoService.postRegistry(this.ponto).subscribe(() => {
+          this.showMessage = true;
+          this.errorMessage = false;
+          this.sameRegistry = false;
+          console.log("ok")
+          var millisecondsToWait = 1000;
+          setTimeout(function () {
+            form.resetForm();
+          }, millisecondsToWait);
+        });
+      }
     });
-    if(Object.keys(this.existsFunc).length === 0) {
-      this.errorMessage = true;
-      this.showMessage = false;
-    }
-    else {
-      this.batidaPontoService.postRegistry(this.ponto).subscribe(() => {
-        // this.cleanForm(form);
-        this.showMessage = true;
-        this.errorMessage = false;
-      });
-    }
   }
 }
