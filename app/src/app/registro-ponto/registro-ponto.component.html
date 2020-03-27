@@ -37,6 +37,7 @@
             </form>
             <div *ngIf="showMessage && f.touched && f.submitted && idfunc.valid && batida.valid" class="sucess"> Registrado com sucesso! </div>
             <div *ngIf="errorMessage && f.touched && f.submitted && idfunc.valid && batida.valid" class="error"> Não existe funcionário cadastrado com esse ID </div>
+            <!-- <div *ngIf="sameRegistry && !showMessage && f.touched && f.submitted && idfunc.valid && batida.valid" class="error"> Erro: sua última batida foi do tipo {{ponto.tipobatida}} </div> -->
         </div>
     </div>
 </div>

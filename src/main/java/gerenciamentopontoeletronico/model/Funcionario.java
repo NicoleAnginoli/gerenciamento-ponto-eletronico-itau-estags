@@ -19,12 +19,32 @@ public class Funcionario {
 
 	@NotNull
 	private String nome;
+	
+	@NotNull
 	private String cpf;
+	
+	@NotNull
 	private String email;
 
 	@CreationTimestamp
 	private LocalDateTime datacadastro;
 	
+	public Funcionario() { }
+	
+	public Funcionario(int id, @NotNull String nome, @NotNull String cpf, @NotNull String email, LocalDateTime datacadastro) {
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.datacadastro = datacadastro;
+	}
+	
+	public Funcionario(String nome, String cpf, String email) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+	}
+
 	public int getId() {
 		return id;
 	}
