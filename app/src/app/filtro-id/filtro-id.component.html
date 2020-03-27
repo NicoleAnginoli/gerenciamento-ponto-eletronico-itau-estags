@@ -66,6 +66,12 @@
             </table>
         </div>
     </div>
+    <div *ngIf="selectedId && funcionario && selectedView==2" class="card hours">
+    <h5 class="card-header">Horas Trabalhadas - {{today | date: 'dd/MM/yyyy'}}</h5>
+        <div class="card-body">
+          {{horasTrabalhadas}}
+        </div>
+    </div>
     <div *ngIf="selectedId && funcionario && selectedView==2" class="card list-ponto">
         <h5 class="card-header">Lista de registro de pontos</h5>
         <div class="card-body">
